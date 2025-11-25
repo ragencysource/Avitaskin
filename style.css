@@ -1164,9 +1164,10 @@ footer .logo {
   }
 
   .about-image img {
-    height: 600px !important;
+    height: auto !important;
     width: 100% !important;
-    object-fit: cover;
+    max-height: 750px;
+    object-fit: contain;
   }
 
   .about-content {
@@ -1501,8 +1502,9 @@ footer .logo {
 
   .about-image img {
     width: 100% !important;
-    height: 420px !important;
-    object-fit: cover !important;
+    height: auto !important;
+    min-height: 300px;
+    object-fit: contain !important;
     border-radius: 2px !important;
   }
 

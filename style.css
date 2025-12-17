@@ -413,20 +413,33 @@ nav.container {
   box-shadow: var(--shadow-soft);
 }
 
+/* Container Foto Bundle */
 .bundle-image {
   flex: 1;
   height: 400px;
   overflow: hidden;
   position: relative;
+  
+  /* TAMBAHAN BARU: */
+  padding: 30px; /* Memberi jarak agar tidak nempel frame kiri/atas/bawah */
+  background: #FAFAFA; /* Memberi background agar menyatu */
+  display: flex;       /* Memastikan gambar benar-benar di tengah */
+  align-items: center;
+  justify-content: center;
 }
 
+/* Gambar Bundle */
 .bundle-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  
+  /* REVISI UTAMA: */
+  object-fit: contain; /* Agar gambar UTUH, tidak terpotong/zoom */
+  
   transition: 0.5s;
 }
 
+/* Efek Hover Tetap Sama */
 .bundle-image:hover img {
   transform: scale(1.05);
 }
@@ -1675,4 +1688,5 @@ footer .logo {
     margin-left: auto !important;
     margin-right: auto !important;
   }
+
 }

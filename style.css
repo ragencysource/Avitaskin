@@ -413,33 +413,20 @@ nav.container {
   box-shadow: var(--shadow-soft);
 }
 
-/* Container Foto Bundle */
 .bundle-image {
   flex: 1;
   height: 400px;
   overflow: hidden;
   position: relative;
-  
-  /* TAMBAHAN BARU: */
-  padding: 30px; /* Memberi jarak agar tidak nempel frame kiri/atas/bawah */
-  background: #FAFAFA; /* Memberi background agar menyatu */
-  display: flex;       /* Memastikan gambar benar-benar di tengah */
-  align-items: center;
-  justify-content: center;
 }
 
-/* Gambar Bundle */
 .bundle-image img {
   width: 100%;
   height: 100%;
-  
-  /* REVISI UTAMA: */
-  object-fit: contain; /* Agar gambar UTUH, tidak terpotong/zoom */
-  
+  object-fit: cover;
   transition: 0.5s;
 }
 
-/* Efek Hover Tetap Sama */
 .bundle-image:hover img {
   transform: scale(1.05);
 }
@@ -589,18 +576,15 @@ nav.container {
   border-color: var(--border-subtle);
 }
 
-/* --- PERUBAHAN UTAMA DISINI: RASIO 1:1 --- */
 .product-card-image {
   padding: 0;
   background: #FAFAFA;
   margin-bottom: 1rem;
   position: relative;
   overflow: hidden;
-  
   width: 100%;
   height: auto;
-  aspect-ratio: 1 / 1; /* Rasio Kotak Sempurna */
-  
+  aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -611,15 +595,13 @@ nav.container {
   width: 100% !important;
   height: 100% !important;
   max-width: 100%;
-  object-fit: cover; /* Mengisi kotak penuh */
-  
+  object-fit: cover;
   mix-blend-mode: multiply;
   transition: transform 0.5s ease;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
   will-change: transform;
 }
-/* ------------------------------------------- */
 
 .product-card:hover .product-card-image img {
   transform: scale(1.05) translateZ(0);
@@ -1213,6 +1195,15 @@ footer .logo {
     padding: 1rem 2.5rem !important;
   }
 
+  .bundle-image {
+    padding: 30px !important;
+    background: #FAFAFA;
+  }
+
+  .bundle-image img {
+    object-fit: contain !important;
+  }
+
   #testimonials h2 {
     font-size: 3rem !important;
     margin-bottom: 5rem !important;
@@ -1307,10 +1298,18 @@ footer .logo {
     flex-direction: column;
   }
 
+  /* --- INI BAGIAN UTAMA YANG DIPERBAIKI --- */
+  /* Di Mobile: Hapus height tetap 250px, ganti jadi aspek rasio kotak */
   .bundle-image {
     width: 100%;
-    height: 250px;
+    height: auto; /* Biarkan tinggi menyesuaikan */
+    aspect-ratio: 1 / 1; /* Paksa jadi KOTAK sempurna */
   }
+  
+  .bundle-image img {
+    object-fit: cover !important; /* Pastikan foto full memenuhi kotak */
+  }
+  /* ----------------------------------------- */
 
   .bundle-info {
     padding: 2rem;
@@ -1688,5 +1687,4 @@ footer .logo {
     margin-left: auto !important;
     margin-right: auto !important;
   }
-
 }

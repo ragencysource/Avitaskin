@@ -491,7 +491,6 @@ nav.container {
   font-family: var(--font-heading);
 }
 
-/* Reset Tombol Bundling */
 .bundle-info .btn-primary {
   width: auto !important;
   min-width: 200px !important;
@@ -577,24 +576,40 @@ nav.container {
   border-color: var(--border-subtle);
 }
 
+/* --- PERUBAHAN UTAMA DISINI: RASIO 1:1 --- */
 .product-card-image {
-  padding: 0rem;
+  padding: 0;
   background: #FAFAFA;
   margin-bottom: 1rem;
   position: relative;
   overflow: hidden;
+  
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1; /* Rasio Kotak Sempurna */
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
 }
 
 .product-card-image img {
   width: 100% !important;
-  height: 280px !important;
-  object-fit: contain !important;
+  height: 100% !important;
+  max-width: 100%;
+  object-fit: cover; /* Mengisi kotak penuh */
+  
   mix-blend-mode: multiply;
   transition: transform 0.5s ease;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
 }
+/* ------------------------------------------- */
 
 .product-card:hover .product-card-image img {
-  transform: scale(1.05);
+  transform: scale(1.05) translateZ(0);
 }
 
 .product-card-title {
@@ -725,23 +740,17 @@ nav.container {
   transition: 0.4s;
 }
 
-/* =========================================
-   FAQ SECTION (Clean & Accordion Style)
-   ========================================= */
-
 #faq {
   padding: 8rem 0;
-  background: #ffffff; /* Putih bersih */
+  background: #ffffff;
 }
 
-/* Membatasi lebar agar nyaman dibaca mata */
 .faq-container {
   max-width: 800px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
-/* Judul Section FAQ */
 #faq h2.section-title {
   margin-bottom: 4rem;
   font-family: var(--font-heading);
@@ -749,51 +758,43 @@ nav.container {
   color: var(--dark-bg);
 }
 
-/* Item FAQ Wrapper */
 .faq-item {
-  border-bottom: 1px solid #E5E5E5; /* Garis pemisah tipis */
-  margin-bottom: 0; /* Reset */
+  border-bottom: 1px solid #E5E5E5;
+  margin-bottom: 0;
   transition: all 0.3s ease;
 }
 
-/* Saat item terbuka, background berubah dikit biar fokus (Opsional) */
 .faq-item[open] {
-  background: #FAFAFA; /* Abu sangat muda */
+  background: #FAFAFA;
 }
 
-/* Pertanyaan (Header) */
 .faq-item summary {
-  padding: 1.8rem 1rem; /* Spacing luas */
+  padding: 1.8rem 1rem;
   cursor: pointer;
-  list-style: none; /* Hilangkan marker default */
+  list-style: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
-  
-  /* Tipografi Pertanyaan */
   font-family: var(--font-body);
   font-weight: 700;
   font-size: 1.1rem;
-  color: #1A1A1A; /* Hitam pekat */
+  color: #1A1A1A;
   letter-spacing: 0.5px;
   transition: color 0.3s;
 }
 
-/* Hover effect pada pertanyaan */
 .faq-item summary:hover {
   color: var(--primary-gold);
 }
 
-/* Menghilangkan panah default browser */
 .faq-item summary::-webkit-details-marker {
   display: none;
 }
 
-/* Membuat Ikon Plus (+) Custom */
 .faq-item summary::after {
   content: '+';
-  font-family: var(--font-body); /* Font biasa aja biar simbolnya clean */
+  font-family: var(--font-body);
   font-size: 1.5rem;
   font-weight: 300;
   color: var(--primary-gold);
@@ -802,22 +803,18 @@ nav.container {
   line-height: 1;
 }
 
-/* Animasi Putar saat Dibuka */
 .faq-item[open] summary::after {
-  transform: rotate(45deg); /* Jadi silang (X) */
+  transform: rotate(45deg);
   color: #1A1A1A;
 }
 
-/* Jawaban (Isi) */
 .faq-item p {
-  padding: 0 1rem 1.8rem 1rem; /* Padding kiri-kanan sama dgn judul */
+  padding: 0 1rem 1.8rem 1rem;
   margin: 0;
-  color: #666666; /* Abu lembut */
+  color: #666666;
   line-height: 1.8;
   font-size: 0.95rem;
   font-weight: 400;
-  
-  /* Animasi Masuk Halus */
   animation: fadeIn 0.5s ease;
 }
 
@@ -826,7 +823,6 @@ nav.container {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- RESPONSIVE MOBILE --- */
 @media (max-width: 768px) {
   #faq {
     padding: 5rem 0;
@@ -838,9 +834,9 @@ nav.container {
   }
 
   .faq-item summary {
-    padding: 1.2rem 0; /* Padding lebih kecil di HP */
+    padding: 1.2rem 0;
     font-size: 1rem;
-    gap: 15px; /* Jarak teks ke ikon */
+    gap: 15px;
   }
   
   .faq-item p {
@@ -848,6 +844,7 @@ nav.container {
     font-size: 0.9rem;
   }
 }
+
 #contact {
   padding: 8rem 0;
   background: #0a0a0a;
@@ -971,6 +968,7 @@ nav.container {
     padding: 1rem 0;
   }
 }
+
 footer {
   background: #000;
   color: #888;
@@ -1053,13 +1051,7 @@ footer .logo {
   color: #fff;
 }
 
-/* =========================================
-   MEDIA QUERIES (DESKTOP)
-   Min-width: 992px
-   ========================================= */
-
 @media (min-width: 992px) {
-  /* Header & Nav */
   header {
     padding: 0 !important;
     background: rgba(255, 255, 255, 0.98) !important;
@@ -1080,7 +1072,6 @@ footer .logo {
     display: block !important;
   }
 
-  /* Hero Section */
   #hero {
     height: 100vh !important;
     min-height: 700px !important;
@@ -1149,7 +1140,6 @@ footer .logo {
     margin-left: 0 !important;
   }
 
-  /* About Section */
   .about-container {
     display: flex !important;
     flex-direction: row !important;
@@ -1196,7 +1186,6 @@ footer .logo {
     padding: 1rem 3rem !important;
   }
 
-  /* Bundle Showcase */
   .bundle-showcase {
     align-items: center !important;
     text-align: left !important;
@@ -1211,7 +1200,6 @@ footer .logo {
     padding: 1rem 2.5rem !important;
   }
 
-  /* Testimonials */
   #testimonials h2 {
     font-size: 3rem !important;
     margin-bottom: 5rem !important;
@@ -1280,7 +1268,6 @@ footer .logo {
     color: #C6A87C !important;
   }
 
-  /* Footer */
   .footer-col {
     text-align: left !important;
     align-items: flex-start !important;
@@ -1291,11 +1278,6 @@ footer .logo {
     margin-left: 0 !important;
   }
 }
-
-/* =========================================
-   MEDIA QUERIES (TABLET & MOBILE)
-   Max-width: 992px & 768px
-   ========================================= */
 
 @media (max-width: 992px) {
   .usp-grid {
@@ -1353,11 +1335,9 @@ footer .logo {
 }
 
 @media (max-width: 768px) {
-  /* Typography Adjustments */
   h1 { font-size: 2.8rem; }
   h2 { font-size: 2rem; }
 
-  /* Header & Navigation */
   header {
     padding: 10px 0 !important;
     height: auto !important;
@@ -1424,7 +1404,6 @@ footer .logo {
     background: var(--dark-bg);
   }
 
-  /* Hero Section */
   #hero {
     background-position: center bottom;
     align-items: flex-end;
@@ -1488,7 +1467,6 @@ footer .logo {
     opacity: 0.8;
   }
 
-  /* About Section */
   #about {
     padding: 4rem 1.5rem 5rem !important;
   }
@@ -1563,7 +1541,6 @@ footer .logo {
     transform: translateY(-2px);
   }
 
-  /* Bundles */
   .bundle-info {
     text-align: center !important;
     align-items: center !important;
@@ -1574,7 +1551,6 @@ footer .logo {
     display: inline-flex !important;
   }
 
-  /* Products / Slider */
   .product-slider-wrapper {
     padding: 0;
   }
@@ -1596,7 +1572,6 @@ footer .logo {
     margin: 0 auto;
   }
 
-  /* Testimonials */
   #testimonials {
     padding: 5rem 1.5rem !important;
     text-align: center !important;
@@ -1690,7 +1665,6 @@ footer .logo {
     font-weight: 600 !important;
   }
 
-  /* Footer */
   .footer-col {
     text-align: center !important;
     align-items: center !important;
